@@ -9,6 +9,10 @@ from drf_yasg.utils import swagger_auto_schema
 
 
 def get_highest_post_id():
+    """Get the highest post id in the database.
+
+    :return: int    the highest post id in the database
+    """
     item = Post.objects.order_by('-id').first()
     if item:
         return item.id
@@ -17,6 +21,12 @@ def get_highest_post_id():
 
 
 def unexpected_keys(request_data, valid_data):
+    """Checks for unexpected keys in the request data.
+
+    :param request_data: dict   data included in the request
+    :param valid_data: dict     validated data
+    :return: bool   True if both dictionaries are equally long, else False
+    """
     if len(request_data.keys()) != len(valid_data.keys()):
         return True
     return False
@@ -139,8 +149,6 @@ def patch_post(request, post_id):
 @api_view(['PUT'])
 def put_post(request, post_id):
     data = request.data
-    # if len(data) != 2 or 'title' not in data or 'body' not in data:
-    #     return Response(status=status.HTTP_400_BAD_REQUEST)
 
     serializer = PostPutSerializer(data=data)
     serializer.is_valid(raise_exception=True)
@@ -174,5 +182,6 @@ def delete_post(request, post_id):
     else:
         item.delete()
         return Response(status=status.HTTP_200_OK)
+
 
 # todo: redo as class based
