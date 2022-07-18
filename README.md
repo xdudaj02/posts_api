@@ -2,7 +2,13 @@
 API for managing posts.
 
 ### Steps for setting up the project:
-First you need to install all the dependencies. Setting up a virtual 
+First clone the repository and then navigate inside it.
+```shell
+git clone https://github.com/xdudaj02/posts_api.git
+cd posts_api
+```
+
+Then you need to install all the dependencies. Setting up a virtual 
 environment beforehand is recommended.
 ```shell
 pip install -r requirements.txt
